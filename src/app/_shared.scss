@@ -1,0 +1,41 @@
+@mixin admin-layout-component($theme, $background) {
+  $primary: map-get($theme, primary);
+  $background-color: mat-color($background, card);
+
+  //.mat-drawer.mat-drawer-side {
+  //  box-shadow: map_get($background, left-nav-shadow)
+  //}
+
+  // 这个class还未确定使用，目前测试用
+  .nav_title {
+    color:map_get($mat-grey, A100);
+    background: mat-color($primary);
+  }
+
+  .admin-layout-component-nav {
+    .mat-sidenav-container {
+      .mat-sidenav {
+        background-color: $background-color;
+      }
+    }
+
+    .sidenav-toolbar {
+      background-color: $background-color;
+    }
+
+    .mat-drawer.mat-drawer-side {
+      box-shadow: 1px 1px 3px 0 map_get($background, left-nav-shadow-1),
+      0.5px 0.5px 1px 0 map_get($background, left-nav-shadow-2);
+    }
+
+    .mat-drawer {
+      background: map_get($background, left-nav);
+    }
+  }
+
+  .admin-layout-component-content {
+    // background: map_get($background, body);
+    background-color: #f5f5f5; //same with eccloud
+  }
+
+}

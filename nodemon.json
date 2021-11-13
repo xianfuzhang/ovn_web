@@ -1,0 +1,4 @@
+{
+  "watch": ["devtools/mock/src"],
+  "ext": "ts,json"
+}

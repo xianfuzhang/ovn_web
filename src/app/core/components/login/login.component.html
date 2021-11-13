@@ -1,0 +1,75 @@
+<div class="signin-content" style="flex-direction: column;justify-content: center">
+  <div>
+    <div class="logo_svg_outer">
+      <div class="login_log" [ngStyle]="{'background-image': logoPath}"></div>
+      <svg class="logo_svg"
+           version="1.1" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+        <symbol id="text">
+          <text class="text" y="86px">OVN-Kube</text>
+        </symbol>
+        <g>
+          <use xlink:href="#text" class="use-text" style="display: none"></use>
+          <use xlink:href="#text" class="use-text" style="display: none"></use>
+          <use xlink:href="#text" class="use-text" style="display: none"></use>
+          <use xlink:href="#text" class="use-text" style="display: none"></use>
+          <use xlink:href="#text" class="use-text"></use>
+        </g>
+      </svg>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field class="full-width-input">
+            <input matInput placeholder="用户名" formControlName="userName" required>
+            <mat-error *ngIf="isFieldInvalid('userName')">
+              {{'请输入用户名'}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <input matInput type="password" placeholder="密码"
+                   formControlName="password" required>
+            <mat-error *ngIf="isFieldInvalid('password')">
+              {{'请输入密码'}}
+            </mat-error>
+          </mat-form-field>
+
+          <div style="display: flex;justify-content: center">
+            <mat-spinner *ngIf="isLogin" [diameter]="20"></mat-spinner>
+          </div>
+          <mat-error *ngIf="loginError">
+            {{'您的用户名或密码不正确'}}
+          </mat-error>
+          <mat-error *ngIf="unknownError">
+            {{'服务未正常运行'}}
+          </mat-error>
+          <div *ngIf="loginSuccess" style="height: 20px;line-height: 20px;font-size: 13px;color:green;">
+            {{'登录成功'}}
+          </div>
+        </mat-card-content>
+        <!-- <mat-card-footer>
+          <div style="display: flex;justify-content: center;align-items: center;">
+            <mat-icon class="language">language</mat-icon>
+            <div [matMenuTriggerFor]="menu" mat-ripple style="display: flex;align-items: center;margin-left:8px;padding: 2px 8px;">
+              <mat-icon *ngIf="false" [ngClass]="{
+            'cn-flag': siteLanguage === '中文',
+            'en-flag': siteLanguage === 'English'}"></mat-icon>
+              {{siteLanguage}}
+              <mat-icon>arrow_drop_down</mat-icon>
+            </div>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="clickMenuItem(item)" *ngFor="let item of menuListItems">
+                <mat-icon *ngIf="false" class="{{item.lang}}-flag"></mat-icon>
+                <span> {{ item.displayName }}</span>
+              </button>
+            </mat-menu>
+          </div>
+        </mat-card-footer> -->
+      </mat-card>
+      <button [disabled]="isLogin || loginSuccess" translate mat-raised-button color="primary"
+              style="height: 60px;font-size: 24px;width: 400px;"
+              type="submit">{{'登录'}}
+      </button>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,70 @@
+@import '../styles/shared';
+.nav_title {
+  height: $acc_menu_header_height;
+  text-align: center;
+  line-height: $acc_menu_header_height;
+}
+
+.admin-layout-component-nav .mat-list-base {
+  padding-top: 0;
+  // height: calc(100% - 80px);
+  // overflow: auto;
+}
+
+.admin-layout-component-nav {
+  height: 100%;
+}
+
+.mat-drawer-container {
+  height: calc(100% - #{$acc_header_height});;
+}
+
+.mat-drawer {
+  width: $acc_layout_component_left_draw_width;
+}
+
+.menu-list-item.mat-list-item {
+  .mat-list-item-content {
+    flex: 1 1 100%;
+  }
+}
+
+.mat-drawer {
+  border-right: none;
+}
+
+.admin-layout-component-content-wrapper {
+  //margin: $acc_layout_component_content_margin;
+  //padding: $acc_layout_component_content_margin;
+   height: 100%;
+  background-color: inherit; //keep same value with ecCloud
+  //width: 100%;
+  //min-height: 100%;
+}
+//override default backgroud-color
+.admin-layout-component-content-wrapper .mat-app-background{
+  background-color: inherit;
+}
+
+.mars_app {
+  height: 100%;
+  //height: calc(100% - 48px);
+  padding: 24px;
+}
+
+
+.mat-app-background-all {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  > div:first-child {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  > div:last-child {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+}

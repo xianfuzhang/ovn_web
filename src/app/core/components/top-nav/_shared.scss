@@ -1,0 +1,19 @@
+// No need import shared scss again.Because the up file has imoport already.
+
+@mixin top-nav-global_header_menu($theme, $background) {
+
+  .top-nav__header_menu .mat-menu-content:not(:empty) {
+    padding-top: $acc_header_user_button_select_content_padding;
+    padding-bottom: $acc_header_user_button_select_content_padding;
+    min-width: $acc_header_user_button_select_min_width;
+  }
+  .top-nav__header_menu .mat-icon {
+    width: $acc_header_user_button_select_icon_size;
+    height: $acc_header_user_button_select_icon_size;
+    font-size: $acc_header_user_button_select_icon_size;
+  }
+
+  .top-nav.mat-toolbar.mat-primary {
+    background: map_get($background, top-nav);
+  }
+}
