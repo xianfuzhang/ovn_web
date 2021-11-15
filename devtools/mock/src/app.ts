@@ -1,10 +1,12 @@
 import express from 'express';
 import { CommonRoutes } from './controllers/route';
+import { LoginRoutes } from './controllers/login';
 import { VpcRoutes } from './controllers/vpc';
 
 const app: express.Application = express();
 const port: number = 3001;
 const routes: CommonRoutes[] = [];
+routes.push(new LoginRoutes(app));
 routes.push(new VpcRoutes(app));
 
 app.get('/', (req, res) => {
