@@ -1,6 +1,6 @@
 import { Component, Inject, ViewEncapsulation, OnInit, AfterViewInit, OnDestroy, ComponentRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { Portal } from '@angular/cdk/portal';
 import { BasicModal } from '../../models/modal';
 import { ModalOverlayRef } from './overlay-ref.service';
 import { MODAL_DATA, CHILD_FORM } from './modal.token';
@@ -32,7 +32,7 @@ export class BasicModalComponent implements OnInit {
   styleUrls: ['./modal.component.scss']
 })
 export class ApplicationModalComponent implements AfterViewInit, OnDestroy {
-  modalOutlet: ComponentPortal<any>;
+  modalOutlet: Portal<any>;
   title: string;
   parentForm = new FormGroup({});
   formInvalid: boolean = true;
@@ -111,9 +111,9 @@ export class ApplicationModalComponent implements AfterViewInit, OnDestroy {
 
   }
 
-  receiveReference(ref: ComponentRef<any>) {
-    this.componentRef = ref;
-  }
+  // receiveReference(ref: ComponentRef<any>) {
+  //   this.componentRef = ref;
+  // }
 
   ngOnDestroy(): void {
     this.ref.close(null);

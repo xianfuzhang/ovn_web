@@ -1,0 +1,109 @@
+/* You can add global styles to this file, and also import other style files */
+@import './styles/themes.scss';
+@import '~ngx-toastr/toastr';
+// @import '~tippy.js/dist/tippy.css'; // optional for styling
+@import './font.scss';
+// @import '~jsoneditor/dist/jsoneditor.css';
+
+*{
+  box-sizing: border-box;
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif !important;
+  font-size: 13px;
+  color: #292a1d;
+}
+a {
+  text-decoration-color: mat-color($app-primary);
+  color: mat-color($app-primary);
+}
+
+.app-root{
+  height: 100%;
+}
+
+.main-header{
+  padding: 24px;
+  top: 54px;
+  width: 100%;
+  // background-color: #f2f2f0;  // line / table border
+  // background-color: #f7f7f7;  // table header bg
+  // background: #fbfbfb;  // table bg
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgba(77,77,77,0.2), 0 1px 1px 0 rgba(0,0,0,0.05);
+}
+.main-header.tab-bar{
+  height: 96px;
+}
+.main-header.secondary.tab-bar{
+  height: 128px;
+}
+.header-primary{
+  display: flex;
+  align-items: center;
+  padding-bottom: 8px;
+  height: 32px;
+}
+.header-primary > .flex-spacer{
+  flex-grow: 1;
+}
+.header-primary > .header-title{
+  font-size: 20px;
+  // line-height: 40px;
+  padding-right: 8px;
+  color: #3c3c3c;
+}
+.header-primary > .header-sub-title{
+  font-size: 13px;
+  line-height: 16px;
+  padding: 8px 0;
+  color: #979797;
+}
+// .header-primary > .header-actions{
+//   line-height: 40px;
+// }
+.header-secondary{
+  height: 32px;
+  padding: 6px 0;
+  overflow-y: auto;
+}
+.main-content {
+  margin: 16px 24px 0;
+}
+.main-content.tab-content{
+  margin: 0;
+}
+//.header_menu_global .mat-menu-content:not(:empty)  {
+//  padding-top: 0;
+//  padding-bottom: 0;
+//  min-width: 200px;
+//}
+
+p,h1,h2,h3,h4,h5,h6 {
+  margin-inline: unset;
+  margin-block: unset;
+}
+
+input, button{
+  outline: 0;
+}
