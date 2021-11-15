@@ -1,0 +1,134 @@
+@import "../../../../styles/shared";
+
+$header_activity_line_height: 20px;
+
+.top-nav {
+  //background: #393939;
+
+  .horizon_space {
+    flex: 1 1 auto;
+  }
+}
+
+.mat-button {
+  height: $acc_header_button_height;
+  padding: $acc_header_button_padding;
+}
+
+.mat-button.toolbar-icon {
+  min-width: $acc_header_button_width;
+  width: $acc_header_button_width;
+}
+
+.mat-toolbar {
+  height: $acc_header_height;
+}
+
+.user_select_button {
+  padding: $acc_header_user_button_padding;
+  min-width: $acc_header_user_button_min_width;
+}
+
+
+.event_url {
+  //color: #579dc4;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+
+.activity_info:before {
+  content: "I";
+  background-color: #5a65ad;
+}
+
+.activity_warn:before {
+  content: "W";
+  background-color: orange;
+}
+
+.activity_error:before {
+  content: "E";
+  background-color: red;
+}
+
+.activity_base:before {
+  border-radius: 15px;
+  color: #fbfbfb;
+  font-size: 11px;
+  line-height: 30px;
+  display: table-cell;
+  text-align: center;
+  height: 30px;
+  width: 30px;
+}
+
+.activity_base {
+  padding-top: 12px;
+  padding-left: 0;
+  padding-right: 15px;
+  min-width: 45px;
+}
+
+
+.activity_empty{
+  line-height: 48px;
+  font-size: 14px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.header_activity_item {
+  display: flex;
+  height: 50px;
+  padding-left: 16px;
+  justify-content: space-around;
+}
+
+.header_activity .header_activity_item:not(:first-child) {
+  border-top: 1px solid #f2f2f2;
+}
+
+.header_activity_line {
+  padding-right: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  line-height: 20px;
+  text-align: left;
+  color: #4d4d4d;
+  font-size: 14px;
+  flex-grow: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.header_activity_confirm {
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+  padding-right: 16px;
+}
+
+.header_activity_line_title {
+  //font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.top-nav .cdk-overlay-pane .mat-menu-panel {
+  border-radius: 3px;
+  // min-height: 48px;
+  min-height: 40px; //ecclound table row action min-height value
+  // min-width: 104px;
+  min-width: 350px; //ecclound table row action min-width value
+  max-width: 350px;
+}
+
+.logo {
+  background-size: 30px 25px;
+  width: 30px;
+  height: 25px;
+}

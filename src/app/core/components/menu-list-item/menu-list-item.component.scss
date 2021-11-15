@@ -1,0 +1,48 @@
+@import "../../../../styles/shared";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  outline: none;
+  width: 100%;
+}
+
+.mat-list-item {
+  &.isSelected {
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  &.isSelected:hover {
+    background: rgba(0, 0, 0, 0.14);
+  }
+
+  height: $acc_menu_list_item_height;
+
+  .routeWrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .routeIcon {
+    font-size: $acc_menu_list_item_icon_width;
+    width: $acc_menu_list_item_icon_width;
+    height: $acc_menu_list_item_icon_width;
+    margin-right: $acc_menu_list_item_icon_margin_right;
+  }
+
+  .routeName {
+    margin: 0;
+    overflow: hidden;
+    font-size: $acc_menu_list_item_name_font-size;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .routeExpand {
+    font-size: $acc_menu_list_item_expand_icon_width;
+    width: $acc_menu_list_item_expand_icon_width;
+    height: $acc_menu_list_item_expand_icon_width;
+  }
+}

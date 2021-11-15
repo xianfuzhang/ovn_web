@@ -1,0 +1,30 @@
+<div mat-dialog-title>
+  {{model.title}}
+  <mat-icon class="close-icon" mat-dialog-close></mat-icon>
+</div>
+<div mat-dialog-content>
+  <ng-container *ngIf="model.content">
+    {{model.content}}
+  </ng-container>
+  <ng-container *ngIf="model.template">
+    <ng-template [ngTemplateOutlet]="model.template"
+      [ngTemplateOutletContext]="{$implicit: model.data}"></ng-template>
+    </ng-container>
+</div>
+<div mat-dialog-actions *ngIf="model.showCancelBtn || model.showSubmitBtn || model.showConfirmBtn">
+  <ng-container *ngIf="model.showConfirmBtn">
+    <button mat-raised-button [mat-dialog-close]="true" [disabled]="model.formGroup?!model.formGroup.valid:false" type="submit">
+      {{'确认'}}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="model.showSubmitBtn">
+    <button mat-raised-button [mat-dialog-close]="true" [disabled]="model.formGroup?!model.formGroup.valid:false"  type="submit">
+      {{'提交'}}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="model.showCancelBtn">
+    <button mat-stroked-button mat-dialog-close>
+      {{'取消'}}
+    </button>
+  </ng-container>
+</div>

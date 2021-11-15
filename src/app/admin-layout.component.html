@@ -1,0 +1,13 @@
+<app-top-nav class="fixed-topnav" ></app-top-nav>
+<mat-drawer-container class="admin-layout-component-nav">
+  <mat-drawer #appDrawer disableClose="true" mode="side" opened>
+    <mat-nav-list>
+      <app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content class="admin-layout-component-content">
+    <div class="admin-layout-component-content-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
