@@ -1,0 +1,11 @@
+<mat-icon class="start-point" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+<mat-menu #menu="matMenu"  xPosition="before">
+  <ng-container *ngFor="let item of items">
+    <button mat-menu-item (click)="onClick(item.id)" [disabled]="item.disabled">
+      <ng-container *ngIf="item.iconName">
+        <mat-icon>{{item.iconName}}</mat-icon>
+      </ng-container>
+      <span>{{item.name}}</span>
+    </button>
+  </ng-container>
+</mat-menu>

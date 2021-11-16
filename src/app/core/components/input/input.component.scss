@@ -1,0 +1,79 @@
+.input-field{
+  display: inline-block;
+}
+.input-container{
+  position: relative;
+}
+.input-container.horizontal{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.input-container .horizontal-label{
+  width: 172px;
+  margin: 8px 24px 24px 0;
+}
+.input-container .horizontal-label.short{
+  width: 136px;
+}
+.input-container .vertical-label{
+  max-width: 172px;
+}
+.input-wrapper{
+  max-width: 256px;
+  height: 32px;
+  padding: 0 4px;
+  color: rgba(0, 0, 0, 0.54);
+  border: 1px solid rgba(0, 0, 0, 0.26);
+  border-radius: 4px;
+  display: flex;
+  justify-content: stretch;
+  align-items: center;
+}
+.input-wrapper.text, .input-wrapper.password{
+  margin: 8px 0 24px 0;
+}
+.input-wrapper.on-focus{
+  border-color: #579dc4;
+}
+.input-wrapper > .mat-icon-button{
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+}
+.input-wrapper > .search{
+  margin-right: 4px;
+}
+.input-wrapper > .content{
+  font-size: 13px;
+  flex-grow: 1;
+  border: 0;
+  color: rgba(0, 0, 0, 0.87);
+  outline: none;
+}
+.input-wrapper > .content.search:hover{
+  border: 0;
+}
+.input-wrapper > .mat-icon-button.clear,
+.input-wrapper > .mat-icon-button.password {
+  visibility: hidden;
+  color: rgba(0, 0, 0, 0.27);
+}
+.input-wrapper > .mat-icon-button.clear:hover,
+.input-wrapper > .mat-icon-button.password:hover {
+  color: rgba(0, 0, 0, 0.54);
+}
+.input-wrapper > .mat-icon-button.visible{
+  visibility: visible;
+}
+
+.input-container > .hint-wrapper {
+  max-width: 256px;
+  position: absolute;
+  top: 62px;
+  margin-bottom: 9px;
+}
+.input-container.horizontal > .hint-wrapper{
+  left: 196px;
+  top: 42px;
+}

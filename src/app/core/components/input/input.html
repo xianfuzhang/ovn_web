@@ -1,0 +1,39 @@
+<div class="input-field">
+  <div class="input-container {{property.labelPosition}}">
+    <ng-container *ngIf="property.labelValue">
+      <div class="{{property.labelPosition}}-label">
+        <mat-label>{{property.labelValue}}</mat-label>
+      </div>
+    </ng-container>
+    <div class="input-wrapper {{property.type}}" [ngClass]="{'on-focus': isFocus}">
+      <ng-container *ngIf="property.type === 'search'">
+        <button #searchButton mat-icon-button aria-label="search" class="search" (click)="search()" disabled>
+          <mat-icon class="md-18">search</mat-icon>
+        </button>
+      </ng-container>
+      <input #inputContent matInput placeholder="{{property.placeholder}}" type="{{property.type}}"
+        [required]="property.required" [pattern]="property.pattern"
+        [disabled]="property.disable" class="content" [(ngModel)]="property.content" (focus)="onFocusEvent()"
+        (blur)="onBlurEvent()">
+      <ng-container *ngIf="property.type === 'search'">
+        <button mat-icon-button aria-label="clear" class="clear" [ngClass]="{visible: property.content}"
+          (click)="clear()">
+          <mat-icon class="md-18">clear</mat-icon>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="property.type === 'password'">
+        <button #passwordVisibleButton mat-icon-button aria-label="clear" class="password"
+          [ngClass]="{visible: property.content}" (click)="changePasswordIcon()">
+          <mat-icon class="md-18" *ngIf="visiableSwitch">visibility</mat-icon>
+          <mat-icon class="md-18" *ngIf="!visiableSwitch">visibility_off</mat-icon>
+        </button>
+      </ng-container>
+    </div>
+    <div class="hint-wrapper" *ngIf="property.hint">
+      <mat-hint>{{property.hint}}</mat-hint>
+    </div>
+    <div class="error-wrapper" *ngIf="property.errorHint">
+      <mat-error >{{property.errorHint}}</mat-error>
+    </div>
+  </div>
+</div>

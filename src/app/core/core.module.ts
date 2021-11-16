@@ -7,6 +7,12 @@ import { LoginComponent } from './components/login/login.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { MenuListItemComponent } from './components/menu-list-item/menu-list-item.component';
 import { BasicModalComponent, ApplicationModalComponent } from './components/modal/modal.component';
+import { GroupButtonComponent } from './components/button/button.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { MaxColumnWidthDirective, MinColumnWidthDirective } from './components/data-table/column-width.directive';
+import { InputComponent } from './components/input/input.component';
+import { MacAddressDirective } from './components/input/mac-address.directive';
+import { InputFieldComponent } from './components/input-field/inputField.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,14 +28,28 @@ import { BasicModalComponent, ApplicationModalComponent } from './components/mod
     TopNavComponent,
     MenuListItemComponent,
     BasicModalComponent,
-    ApplicationModalComponent
+    ApplicationModalComponent,
+    GroupButtonComponent,
+    DataTableComponent,
+    MaxColumnWidthDirective,
+    MinColumnWidthDirective,
+    MacAddressDirective,
+    InputComponent,
+    InputFieldComponent
   ],
   declarations: [
     LoginComponent,
     TopNavComponent,
     MenuListItemComponent,
     BasicModalComponent,
-    ApplicationModalComponent
+    ApplicationModalComponent,
+    GroupButtonComponent,
+    DataTableComponent,
+    MaxColumnWidthDirective,
+    MinColumnWidthDirective,
+    MacAddressDirective,
+    InputComponent,
+    InputFieldComponent
   ],
   providers: []
 })

@@ -1,0 +1,44 @@
+
+.app_input_field {
+  display: flex;
+  padding-bottom: 15px;
+
+  > div:first-child {
+    line-height: 32px;
+    width: 136px;
+    font-size: 13px;
+    color: #3c3c3c;
+    text-transform: capitalize;
+  }
+
+  > div:last-child {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    width: 280px;
+  }
+
+  > .label {
+    display: flex;
+  }
+
+  > .label > span{
+    color: red;
+    visibility: hidden;
+  }
+}
+.app_input_field.required > .label > span{
+  visibility: visible;
+}
+
+.app_input_field.no-form-field{
+  padding-bottom: 0px;
+}
+
+.needed .redstar::after{
+  content: '*';
+  color: red;
+  font-size: 8px;
+  font-weight: bold;
+  vertical-align: super;
+}

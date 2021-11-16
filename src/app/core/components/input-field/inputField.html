@@ -1,0 +1,9 @@
+<div class="app_input_field" [ngClass]="{'no-form-field': noFormField, 'required': isRequired}">
+  <div class="label">
+    {{label}}
+    <span>*</span>
+  </div>
+  <div>
+    <ng-content></ng-content>
+  </div>
+</div>
