@@ -44,13 +44,13 @@
 
   <button mat-button [matMenuTriggerFor]="menu" class="user_select_button" aria-label="Example icon-button with a menu">
     <mat-icon style="margin-right: 8px">account_circle</mat-icon>
-    Hi, {{userName}}
+    {{userName}}
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu" [class]='"top-nav__header_menu"'>
     <button mat-menu-item (click)="clickForLogout()">
       <mat-icon>power_settings_new</mat-icon>
-      <span>Logout</span>
+      <span>退出</span>
     </button>
   </mat-menu>
 </mat-toolbar>

@@ -1,17 +1,12 @@
 <div class="signin-content" style="flex-direction: column;justify-content: center">
   <div>
     <div class="logo_svg_outer">
-      <div class="login_log" [ngStyle]="{'background-image': logoPath}"></div>
-      <svg class="logo_svg"
-           version="1.1" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg">
+      <!-- <div class="login_log" [ngStyle]="{'background-image': logoPath}"></div> -->
+      <svg class="logo_svg" version="1.1" viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg">
         <symbol id="text">
-          <text class="text" y="86px">OVN-Kube</text>
+          <text class="text" x="20px" y="85px">OVN-Kube</text>
         </symbol>
         <g>
-          <use xlink:href="#text" class="use-text" style="display: none"></use>
-          <use xlink:href="#text" class="use-text" style="display: none"></use>
-          <use xlink:href="#text" class="use-text" style="display: none"></use>
-          <use xlink:href="#text" class="use-text" style="display: none"></use>
           <use xlink:href="#text" class="use-text"></use>
         </g>
       </svg>
@@ -20,14 +15,14 @@
       <mat-card>
         <mat-card-content>
           <mat-form-field class="full-width-input">
-            <input matInput placeholder="用户名" formControlName="userName" required>
+            <input matInput placeholder="用户名" formControlName="userName" required />
             <mat-error *ngIf="isFieldInvalid('userName')">
               {{'请输入用户名'}}
             </mat-error>
           </mat-form-field>
           <mat-form-field class="full-width-input">
             <input matInput type="password" placeholder="密码"
-                   formControlName="password" required>
+                   formControlName="password" required autocomplete/>
             <mat-error *ngIf="isFieldInvalid('password')">
               {{'请输入密码'}}
             </mat-error>

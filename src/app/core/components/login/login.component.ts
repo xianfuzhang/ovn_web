@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, map } from "rxjs/operators";
-// import { NotifyService } from "../../services/notify.service";
 
 @Component({
   selector: 'app-login',
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    // private toastrService: NotifyService,
     private authService: AuthService) {
     this.form = this.fb.group({
       userName: ['', Validators.required],
@@ -59,23 +57,8 @@ export class LoginComponent implements OnInit {
       this.loginError = false;
       this.unknownError = false;
       this.authService.login(this.form.value)
-      // .pipe(
-      //   map(res => {
-      //     this.isLogin = false;
-      //     this.loginSuccess = true;
-      //   }),
-      //   delay(200)
-      // )
-      .subscribe((val) => {
+      .subscribe(() => {
         this.router.navigate([this.returnUrl]);
-      }, (error) => {
-        if (error.status == 403) {
-          this.loginError = true;
-        } else {
-          this.unknownError = true;
-        }
-        this.isLogin = false;
-        console.log("login error ..." + JSON.stringify(error));
       });
     }
     this.formSubmitAttempt = true;

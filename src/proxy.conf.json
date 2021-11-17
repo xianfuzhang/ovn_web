@@ -1,6 +1,6 @@
 {
-  "/mars": {
-    "target": "http://localhost:4001",
+  "/": {
+    "target": "http://localhost:3001",
     "secure": false
   }
 }

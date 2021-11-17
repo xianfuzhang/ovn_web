@@ -22,6 +22,7 @@ $header_activity_line_height: 20px;
 
 .mat-toolbar {
   height: $acc_header_height;
+  user-select: none;
 }
 
 .user_select_button {

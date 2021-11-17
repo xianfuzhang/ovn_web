@@ -10,10 +10,10 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(params: User) {
-    return this.http.post(`/mars/v1/login`, params);
+    return this.http.post(`/v1/login`, params);
   }
 
   logout(params: User) {
-    return this.http.post('/mars/v1/logout', params);
+    return this.http.post('/v1/logout', params);
   }
 }
