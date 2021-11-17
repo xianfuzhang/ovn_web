@@ -1,12 +1,12 @@
 @import '../app/admin-layout.component.scss';
-// @import '../app/core/components/menu-list-item/shared';
-// @import '../app/core/components/top-nav/shared';
+@import '../app/core/components/menu-list-item/shared';
+@import '../app/core/components/top-nav/shared';
 @import '../app/shared';
 
 @mixin component-themes($theme, $background) {
   @include admin-layout-component($theme, $background);
-  // @include menu-list-item-component($theme, $background);
-  // @include top-nav-global_header_menu($theme, $background);
+  @include menu-list-item-component($theme, $background);
+  @include top-nav-global_header_menu($theme, $background);
 }
 
 .cdk-overlay-pane .mat-menu-panel {
