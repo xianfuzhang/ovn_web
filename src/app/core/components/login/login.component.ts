@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { delay, map } from "rxjs/operators";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -57,9 +58,19 @@ export class LoginComponent implements OnInit {
       this.loginError = false;
       this.unknownError = false;
       this.authService.login(this.form.value)
-      .subscribe(() => {
-        this.router.navigate([this.returnUrl]);
-      });
+        .subscribe({
+          complete: () => {
+            this.router.navigate([this.returnUrl]);
+          }, error: (res: HttpErrorResponse) => {
+            if (res.status === 401) {
+              this.loginError = true;
+            } else {
+              this.unknownError = true;
+            }
+            this.isLogin = false;
+            console.log(res.error.msg);
+          }
+        });
     }
     this.formSubmitAttempt = true;
   }

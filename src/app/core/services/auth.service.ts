@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Observable, of, Subject, throwError } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { HttpResponse } from '@angular/common/http';
+import { Observable, of, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { LoginService } from "../https/login";
 // import { CookieOptions, CookieService } from "ngx-cookie";

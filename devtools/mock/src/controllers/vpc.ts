@@ -8,7 +8,7 @@ export class VpcRoutes extends CommonRoutes {
   }
 
   configureRoutes(): express.Application {
-    this.app.route(`/vpcs`)
+    this.app.route(`/v1/vpcs`)
       .get((req: express.Request, res: express.Response) => {
         const vpcs: VpcModel[] = [
           { name: 'vpc1' }, { name: 'vpc2' }
@@ -19,7 +19,7 @@ export class VpcRoutes extends CommonRoutes {
         res.status(200).send(null);
       });
 
-    this.app.route(`/vpcs/:vpcName`)
+    this.app.route(`/v1/vpcs/:vpcName`)
       .get((req: express.Request, res: express.Response) => {
         res.status(200).send(`GET requested for id ${req.params.vpcName}`);
       })
