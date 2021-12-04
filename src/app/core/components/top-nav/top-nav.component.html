@@ -2,47 +2,7 @@
   <span class="logo"></span>
   <span>OVN-Kube</span>
   <span class="horizon_space"></span>
-  <!-- <button #activityMenuButton style="padding: 0" mat-button class="example-icon toolbar-icon" (menuOpened)="eventShow()"
-          [matMenuTriggerFor]="alert_menu">
-    <mat-icon matBadge="{{unReadCount}}" matBadgeColor="warn">notifications</mat-icon>
-  </button> -->
-
-  <!-- <mat-menu xPosition="before" #alert_menu="matMenu" [class]='"top-nav__header_menu"'>
-    <div style="width: 350px;" (click)="$event.stopPropagation();">
-      <div style="font-size:18px;line-height:48px;height:48px;border-bottom: 1px solid #f7f7f7;padding-left: 16px;">
-        {{'MODULE.ACTIVITY.EVENT'|translate}}
-      </div>
-      <div>
-        <div style="min-height: 48px;" [appLoading]="isEventLoading">
-          <div *ngIf="!isEventLoading">
-            <div *ngIf="events.length == 0" class="activity_empty">
-              <mat-icon>circle_notifications</mat-icon>
-              {{'MODULE.ACTIVITY.NO_EVENT'| translate}}
-            </div>
-            <div *ngIf="events.length > 0">
-              <div class='header_activity_item' *ngFor="let event of eventsShow">
-                <div class="header_activity_line">
-                  <div class="header_activity_line_title">{{event.title}}</div>
-                  <div><small>{{"MODULE.ACTIVITY.AT"|translate}} {{event.timestampStr}}</small></div>
-                </div>
-                <div class="header_activity_confirm">
-                  <button [disabled]="event.clicked" (click)="confirmEvent(event, $event);" style="min-width: 50px;height: 24px;padding: 0;"
-                          mat-stroked-button>{{'COMPONENT.SYSTEM.EVENT.ACTION.CONFIRM' | translate}}</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div  style="line-height:40px;height:40px;border-top: 1px solid #f7f7f7;;text-align: right;padding-right: 16px;">
-        <a (click)="activityMenuButton._getHostElement().click()" [routerLink]="'/system_event'" [queryParams]="{show_unconfirmed: true}"
-           class="event_url">{{'MODULE.ACTIVITY.SEE_MORE'| translate}}</a>
-      </div>
-    </div>
-  </mat-menu> -->
-
-
-  <button mat-button [matMenuTriggerFor]="menu" class="user_select_button" aria-label="Example icon-button with a menu">
+  <!-- <button mat-button [matMenuTriggerFor]="menu" class="user_select_button" aria-label="Example icon-button with a menu">
     <mat-icon style="margin-right: 8px">account_circle</mat-icon>
     {{userName}}
     <mat-icon>arrow_drop_down</mat-icon>
@@ -52,5 +12,5 @@
       <mat-icon>power_settings_new</mat-icon>
       <span>退出</span>
     </button>
-  </mat-menu>
+  </mat-menu> -->
 </mat-toolbar>
