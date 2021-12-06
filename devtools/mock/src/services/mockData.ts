@@ -7,12 +7,19 @@ import {
   NamespaceListBuilder,
   NamespacePodListBuilder
 } from '../models/namespace';
+import {
+  NetworkBuilder,
+  NetworkList,
+  NetworkListBuilder
+} from '../models/vpc';
 
 class MockData {
   private isInit: boolean = false;
   private namespaceList!: NamespaceList;
   private nsListBilder!: NamespaceListBuilder;
   private namespacePodListMap = new Map<string, NamespacePodList>();
+  private networkList!: NetworkList;
+  private networkListBuilder!: NetworkListBuilder;
 
   hasInit(): boolean {
     return this.isInit;
@@ -30,6 +37,10 @@ class MockData {
     return this.namespacePodListMap;
   }
 
+  getNetworkList(): NetworkList {
+    return this.networkList;
+  }
+
   init() {
     console.log('init mock now.......');
 
@@ -39,7 +50,6 @@ class MockData {
       this.nsListBilder.addNamespace(new NamespaceBuilder().getNamespace());
     });
     this.namespaceList = this.nsListBilder.getNamespaceList();
-    this.isInit = true;
 
     //namespace pods
     const namespaces: string[] = this.nsListBilder
@@ -55,6 +65,16 @@ class MockData {
       });
       this.namespacePodListMap.set(name, podListBuilder.getPodList());
     });
+
+    //vpc network
+    this.networkListBuilder = new NetworkListBuilder();
+    _.times(config.vpcNetworkNumber, () => {
+      this.networkListBuilder.addNetwork(new NetworkBuilder().getNetwork());
+    });
+    this.networkList = this.networkListBuilder.getNetworkList();
+    
+
+    this.isInit = true;
   }
 }
 
