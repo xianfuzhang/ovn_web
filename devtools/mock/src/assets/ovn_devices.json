@@ -1,0 +1,203 @@
+{
+  "devices": [
+    {
+      "uid": "88d06251-8a5e-4ad6-91be-c13178f5ac45",
+      "name": "join",
+      "type": "SWITCH",
+      "ports": [
+        {
+          "name": "jtor-ovn_cluster_router",
+          "type": "router",
+          "routerPort": "rtoj-ovn_cluster_router"
+        },
+        {
+          "name": "jtor-GR_k8s-worker1",
+          "type": "router",
+          "routerPort": "rtoj-GR_k8s-worker1"
+        },
+        {
+          "name": "jtor-GR_k8s-worker2",
+          "type": "router",
+          "routerPort": "rtoj-GR_k8s-worker2"
+        }
+      ]
+    },
+    {
+      "uid": "70068073-7350-4f87-acec-240f09c0448d",
+      "name": "GR_k8s-worker1",
+      "type": "ROUTER",
+      "ports": [
+        {
+          "name": "rtoj-GR_k8s-worker1",
+          "type": "normal",
+          "macAddress": "0a:58:64:40:00:02",
+          "networks": [
+            "100.64.0.2/16"
+          ]
+        },
+        {
+          "name": "rtoe-GR_k8s-worker1",
+          "type": "normal",
+          "macAddress": "52:54:00:ed:e7:7f",
+          "networks": [
+            "192.168.200.181/24"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "2f6a0586-ba8c-4a15-ae30-fd7f83cbc87b",
+      "name": "GR_k8s-worker2",
+      "type": "ROUTER",
+      "ports": [
+        {
+          "name": "rtoj-GR_k8s-worker2",
+          "type": "normal",
+          "macAddress": "0a:58:64:40:00:03",
+          "networks": [
+            "100.64.0.3/16"
+          ]
+        },
+        {
+          "name": "rtoe-GR_k8s-worker2",
+          "type": "normal",
+          "macAddress": "52:54:00:83:91:20",
+          "networks": [
+            "192.168.200.182/24"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "e1cf692b-5269-4021-9898-318eeb544495",
+      "name": "ext_k8s-worker1",
+      "type": "SWITCH",
+      "ports": [
+        {
+          "name": "etor-GR_k8s-worker1",
+          "type": "router",
+          "routerPort": "rtoe-GR_k8s-worker1",
+          "macAddress": "52:54:00:ed:e7:7f"
+        },
+        {
+          "name": "brens3_k8s-worker1",
+          "type": "localnet",
+          "macAddress": "unknown",
+          "ipAddresses": []
+        }
+      ]
+    },
+    {
+      "uid": "0db1819a-2da9-420b-aa5a-d649315e96fb",
+      "name": "ext_k8s-worker2",
+      "type": "SWITCH",
+      "ports": [
+        {
+          "name": "etor-GR_k8s-worker2",
+          "type": "router",
+          "routerPort": "rtoe-GR_k8s-worker2",
+          "macAddress": "52:54:00:83:91:20"
+        },
+        {
+          "name": "brens3_k8s-worker2",
+          "type": "localnet",
+          "macAddress": "unknown",
+          "ipAddresses": []
+        }
+      ]
+    },
+    {
+      "uid": "e7a6d354-50b0-4a16-b083-571dad78ad04",
+      "name": "ovn_cluster_router",
+      "type": "ROUTER",
+      "ports": [
+        {
+          "name": "rtoj-ovn_cluster_router",
+          "type": "normal",
+          "macAddress": "0a:58:64:40:00:01",
+          "networks": [
+            "100.64.0.1/16"
+          ]
+        },
+        {
+          "name": "rtos-k8s-worker1",
+          "type": "normal",
+          "macAddress": "0a:58:0a:7a:00:01",
+          "networks": [
+            "10.122.0.1/24"
+          ]
+        },
+        {
+          "name": "rtos-k8s-worker2",
+          "type": "normal",
+          "macAddress": "0a:58:0a:7a:02:01",
+          "networks": [
+            "10.122.2.1/24"
+          ]
+        }
+      ]
+    },
+    {
+      "uid": "cc044a98-af25-44aa-9287-525c348bab58",
+      "name": "k8s-worker1",
+      "type": "SWITCH",
+      "ports": [
+        {
+          "name": "stor-k8s-worker1",
+          "type": "router",
+          "routerPort": "rtos-k8s-worker1"
+        },
+        {
+          "name": "k8s-k8s-worker1",
+          "type": "normal",
+          "macAddress": "ba:32:68:63:f7:fa",
+          "ipAddresses": [
+            "10.122.0.2"
+          ]
+        },
+        {
+          "name": "default_pod1",
+          "type": "normal",
+          "macAddress": "0a:58:0a:7a:00:03",
+          "ipAddresses": [
+            "10.122.0.3"
+          ]
+        },
+        {
+          "name": "k8s-worker1-vtep-gateway",
+          "type": "vtep",
+          "macAddress": "unknown",
+          "ipAddresses": []
+        }
+      ]
+    },
+    {
+      "uid": "4559cd89-69da-4154-a972-0ce3f7a81c99",
+      "name": "k8s-worker2",
+      "type": "SWITCH",
+      "ports": [
+        {
+          "name": "stor-k8s-worker2",
+          "type": "router",
+          "routerPort": "rtos-k8s-worker2"
+        },
+        {
+          "name": "k8s-k8s-worker2",
+          "type": "normal",
+          "macAddress": "7e:e1:b1:84:60:d2",
+          "ipAddresses": [
+            "10.122.2.2"
+          ]
+        },
+        {
+          "name": "default_pod4",
+          "type": "normal",
+          "macAddress": "0a:58:0a:7a:02:06",
+          "ipAddresses": [
+            "10.122.2.6"
+          ]
+        }
+      ]
+    }
+  ]
+}

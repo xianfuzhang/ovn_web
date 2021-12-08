@@ -1,0 +1,60 @@
+{
+  "links": [
+    {
+      "srcDeviceId": "88d06251-8a5e-4ad6-91be-c13178f5ac45",
+      "srcDeviceName": "join",
+      "srcPort": "jtor-ovn_cluster_router",
+      "dstDeviceId": "e7a6d354-50b0-4a16-b083-571dad78ad04",
+      "dstDeviceName": "ovn_cluster_router",
+      "dstPort": "rtoj-ovn_cluster_router"
+    },
+    {
+      "srcDeviceId": "88d06251-8a5e-4ad6-91be-c13178f5ac45",
+      "srcDeviceName": "join",
+      "srcPort": "jtor-GR_k8s-worker1",
+      "dstDeviceId": "70068073-7350-4f87-acec-240f09c0448d",
+      "dstDeviceName": "GR_k8s-worker1",
+      "dstPort": "rtoj-GR_k8s-worker1"
+    },
+    {
+      "srcDeviceId": "88d06251-8a5e-4ad6-91be-c13178f5ac45",
+      "srcDeviceName": "join",
+      "srcPort": "jtor-GR_k8s-worker2",
+      "dstDeviceId": "2f6a0586-ba8c-4a15-ae30-fd7f83cbc87b",
+      "dstDeviceName": "GR_k8s-worker2",
+      "dstPort": "rtoj-GR_k8s-worker2"
+    },
+    {
+      "srcDeviceId": "e7a6d354-50b0-4a16-b083-571dad78ad04",
+      "srcDeviceName": "ovn_cluster_router",
+      "srcPort": "rtos-k8s-worker1",
+      "dstDeviceId": "cc044a98-af25-44aa-9287-525c348bab58",
+      "dstDeviceName": "k8s-worker1",
+      "dstPort": "stor-k8s-worker1"
+    },
+    {
+      "srcDeviceId": "e7a6d354-50b0-4a16-b083-571dad78ad04",
+      "srcDeviceName": "ovn_cluster_router",
+      "srcPort": "rtos-k8s-worker2",
+      "dstDeviceId": "4559cd89-69da-4154-a972-0ce3f7a81c99",
+      "dstDeviceName": "k8s-worker2",
+      "dstPort": "stor-k8s-worker2"
+    },
+    {
+      "srcDeviceId": "70068073-7350-4f87-acec-240f09c0448d",
+      "srcDeviceName": "GR_k8s-worker1",
+      "srcPort": "rtoe-GR_k8s-worker1",
+      "dstDeviceId": "e1cf692b-5269-4021-9898-318eeb544495",
+      "dstDeviceName": "ext_k8s-worker1",
+      "dstPort": "etor-GR_k8s-worker1"
+    },
+    {
+      "srcDeviceId": "2f6a0586-ba8c-4a15-ae30-fd7f83cbc87b",
+      "srcDeviceName": "GR_k8s-worker2",
+      "srcPort": "rtoe-GR_k8s-worker2",
+      "dstDeviceId": "0db1819a-2da9-420b-aa5a-d649315e96fb",
+      "dstDeviceName": "ext_k8s-worker2",
+      "dstPort": "etor-GR_k8s-worker2"
+    }
+  ]
+}
