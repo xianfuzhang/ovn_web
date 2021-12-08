@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/services/auth.guard';
-import { LoginComponent } from './core/components/login/login.component';
+// import { LoginComponent } from './core/components/login/login.component';
 import { AdminLayoutComponent } from './admin-layout.component';
+import { TopoComponent } from './pages/topo/topo.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -11,7 +13,8 @@ const routes: Routes = [
     // canActivateChild: [ChildrenGuard],
     children: [
       // { path: 'home', component: HomeComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'topo', pathMatch: 'full' },
+      { path: 'topo', component: TopoComponent }
     ]
   },
   // { path: 'login', component: LoginComponent },

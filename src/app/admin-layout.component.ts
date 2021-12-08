@@ -14,7 +14,11 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   @ViewChild('appDrawer') appDrawer: ElementRef<HTMLInputElement>;
 
   navItems: NavItem[] = [
-   
+    {
+      displayName: 'Topology',
+      iconName: 'multiple_stop',
+      route: 'topo'
+    },
   ]
 
   constructor(private navService: NavService,

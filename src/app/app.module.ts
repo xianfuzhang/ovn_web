@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './admin-layout.component';
+import { TopoModule } from './pages/topo/topo.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AdminLayoutComponent } from './admin-layout.component';
     }),
     AppRoutingModule,
     CoreModule,
+    TopoModule
   ],
   providers: [
   ],
