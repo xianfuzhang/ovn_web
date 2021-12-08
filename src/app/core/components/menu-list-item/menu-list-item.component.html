@@ -1,4 +1,4 @@
-<a *ngIf="item.show" mat-list-item color="primary" (click)="onItemSelected(item)"
+<a mat-list-item color="primary" (click)="onItemSelected(item)"
    [ngClass]="{
    'active': item.route ? router.isActive(item.route, true): false,
    'expanded': expanded,
@@ -16,7 +16,7 @@
       </mat-icon>
     </span>
 </a>
-<div *ngIf="item.show && expanded" style="background: white;">
+<div *ngIf="expanded" style="background: white;">
   <app-menu-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
   </app-menu-list-item>
 </div>
