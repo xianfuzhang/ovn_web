@@ -13,6 +13,7 @@ import { MaxColumnWidthDirective, MinColumnWidthDirective } from './components/d
 import { InputComponent } from './components/input/input.component';
 import { MacAddressDirective } from './components/input/mac-address.directive';
 import { InputFieldComponent } from './components/input-field/inputField.component';
+import { LoadingDirective } from './components/loading/loading.directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +36,8 @@ import { InputFieldComponent } from './components/input-field/inputField.compone
     MinColumnWidthDirective,
     MacAddressDirective,
     InputComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    LoadingDirective
   ],
   declarations: [
     LoginComponent,
@@ -49,7 +51,8 @@ import { InputFieldComponent } from './components/input-field/inputField.compone
     MinColumnWidthDirective,
     MacAddressDirective,
     InputComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    LoadingDirective
   ],
   providers: []
 })
