@@ -1,1 +1,17 @@
-<p>topo works!</p>
+<div *ngIf="!(loading$|async); else loadingTpl" class="topoContainer">
+  <ng-container *ngIf="data$|async as topoData">
+    <ng-container *ngIf="topoData.length ===2 
+      && topoData[0].length >0 && topoData[1].length >0; else noDataTpl">
+      {{topoData[0].length}}<br>
+      {{topoData[1].length}}
+    </ng-container>
+  </ng-container>
+</div>
+<ng-template #noDataTpl>
+  <div class="noDataShow">
+    暂无Topology数据可供显示
+  </div>
+</ng-template>
+<ng-template #loadingTpl>
+  <div appLoading class="topoContainer" [appLoadingSize]=100 [appLoadingWidth]=10></div>
+</ng-template>
