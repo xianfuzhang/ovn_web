@@ -2,8 +2,8 @@
   <ng-container *ngIf="data$|async as topoData">
     <ng-container *ngIf="topoData.length ===2 
       && topoData[0].length >0 && topoData[1].length >0; else noDataTpl">
-      {{topoData[0].length}}<br>
-      {{topoData[1].length}}
+      <tree-topo class="tree-topo-container" [devices]="topoData[0]" [links]="topoData[1]">
+      </tree-topo>
     </ng-container>
   </ng-container>
 </div>
