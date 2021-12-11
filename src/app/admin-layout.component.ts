@@ -16,7 +16,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   navItems: NavItem[] = [
     {
       displayName: 'Topology',
-      iconName: 'multiple_stop',
+      iconName: 'share',
       route: 'topo'
     },
   ]
