@@ -1,4 +1,11 @@
-.topoContainer {
+.mat-drawer-container.topo-container{
+  height: 100%;
+}
+.mat-sidenav.detailPannel{
+  width: 430px;
+  background: #fafafa;
+}
+.topo-content {
   height: 100%;
 }
 .noDataShow {

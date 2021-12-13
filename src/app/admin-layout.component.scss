@@ -15,9 +15,9 @@
   height: 100%;
 }
 
-.mat-drawer-container {
-  height: calc(100% - #{$acc_header_height});;
-}
+// .mat-drawer-container {
+//   height: calc(100% - #{$acc_header_height});;
+// }
 
 .mat-drawer {
   width: $acc_layout_component_left_draw_width;
