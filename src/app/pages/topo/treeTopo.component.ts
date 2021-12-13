@@ -1,7 +1,7 @@
-import { Component, Input, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, ElementRef, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { tree, hierarchy } from 'd3-hierarchy';
 // import { linkVertical } from 'd3-shape';
-import { select } from 'd3-selection';
+import { select, selectAll, Selection } from 'd3-selection';
 import { Device, Link } from '../../core/models/device';
 
 const d3Tree = tree();
@@ -22,10 +22,12 @@ interface TreeNode {
 export class TreeTopoComponent implements OnInit, OnDestroy {
   @Input('devices') devices: Device[];
   @Input('links') links: Link[];
+  @Output() showTopoDetailEmitter = new EventEmitter<object>();
+  @Output() hiddenTopoDetailEmitter = new EventEmitter<string>();
   margin = {
     top: 20,
     left: 80,
-    bottom: 20,
+    bottom: 80,
     right: 150
   }
   svgWidth: number;
@@ -40,6 +42,7 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
     this.buildTreeRootNode();
     console.log(this.treeRootNode);
     this.initTreeTopo();
+    this.initNodeEventAction();
   }
   ngAfterViewInit(): void { }
 
@@ -101,9 +104,47 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       .text(d => d.data.name);
   }
 
-  resize(event: Event) {
+  initNodeEventAction(): void {
+    select('svg#tree-root')
+      .on('click', (event: Event, d) => {
+        event.preventDefault();
+        this.hiddenTopoDetailEmitter.emit();
+      });
+    selectAll('g.node')
+      .on('click', (event: MouseEvent, d) => {
+        event.stopPropagation();
+        const g = select(event.currentTarget);
+        this.addNodeSelectionStyle(g);
+        this.showTopoDetailEmitter.emit({ id: d.data.id, name: d.data.name });
+      })
+      .on('mouseenter', (event: MouseEvent, d) => {
+        const g = select(event.currentTarget);
+        this.addNodeSelectionStyle(g);
+      })
+      .on('mouseleave', (event: MouseEvent, d) => {
+        const g = select(event.currentTarget);
+        this.removeNodeSelectionStyle(g);
+      });
+  }
+
+  addNodeSelectionStyle(selection: Selection): void {
+    selection.select('use')
+      .style('transform', 'scale(1.1)');
+    selection.select('text')
+      .style('transform', 'scale(1.1)');
+  }
+
+  removeNodeSelectionStyle(selection: Selection): void {
+    selection.select('use')
+      .style('transform', null);
+    selection.select('text')
+      .style('transform', null);
+  }
+
+  resize() {
     this.initSvgArea();
     this.initTreeTopo();
+    this.initNodeEventAction();
   }
 
   checkDataValid(): void {
