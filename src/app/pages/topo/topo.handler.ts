@@ -1,7 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, BehaviorSubject, combineLatest, throwError, of, Subject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { Device, Link } from '../../core/models/device';
 import { MessageModel } from '../../core/models/message';
 import { DeviceService } from '../../core/https/device';
 
@@ -11,9 +10,11 @@ import { DeviceService } from '../../core/https/device';
 export class TopoHandler implements OnDestroy {
   private _data = new BehaviorSubject<any>([]);
   private _loading = new BehaviorSubject<boolean>(true);
+  private _detailLoading = new BehaviorSubject<boolean>(true);
   private _message = new Subject<MessageModel>();
   readonly data$: Observable<any> = this._data.asObservable();
   readonly loading$: Observable<boolean> = this._loading.asObservable();
+  readonly detailLoading$: Observable<boolean> = this._detailLoading.asObservable();
   readonly message$: Observable<MessageModel> = this._message.asObservable();
   private dataStore = { data: [] };
 
@@ -25,7 +26,7 @@ export class TopoHandler implements OnDestroy {
     this._loading.unsubscribe();
   }
 
-  getDeviceLinkData() {
+  getDeviceLinkData(): void {
     this._loading.next(true);
     const device = this.deviceService.getDeviceList()
       .pipe(
@@ -55,4 +56,35 @@ export class TopoHandler implements OnDestroy {
       });
   }
 
+  getDeviceDetail(device: object): void {
+    this._detailLoading.next(true);
+    const combine: Observable<any>[] = [];
+    const port = this.deviceService.getDevicePortList(device['id'])
+      .pipe(
+        map(res => res['ports']),
+        catchError((error) => {
+          this._message.next({ level: 'error', content: error });
+          return of([]);
+        })
+      );
+    combine.push(port);
+    if (device['type'] === 'router') {
+      const nat = this.deviceService.getDeviceNatList(device['id'])
+        .pipe(
+          map(res => res['nats']),
+          catchError((error) => {
+            this._message.next({ level: 'error', content: error });
+            return of([]);
+          })
+        );
+      combine.push(nat);
+    }
+    combineLatest(combine)
+      .subscribe((res) => {
+        this._detailLoading.next(false);
+        console.log(res);
+        // this.dataStore.data = this.formatDevicePortModel(res);
+        this._data.next(JSON.parse(JSON.stringify(this.dataStore.data)));
+      });
+  }
 }

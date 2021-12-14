@@ -1,17 +1,26 @@
-<div *ngIf="!(loading$|async); else loadingTpl" class="topoContainer">
-  <ng-container *ngIf="data$|async as topoData">
-    <ng-container *ngIf="topoData.length ===2 
-      && topoData[0].length >0 && topoData[1].length >0; else noDataTpl">
-      <tree-topo class="tree-topo-container" [devices]="topoData[0]" [links]="topoData[1]">
-      </tree-topo>
-    </ng-container>
-  </ng-container>
-</div>
+<mat-sidenav-container class="topo-container" hasBackdrop="false" autosize="true">
+  <mat-sidenav-content>
+    <div *ngIf="!(loading$|async); else loadingTpl" class="topo-content">
+      <ng-container *ngIf="data$|async as topoData">
+        <ng-container *ngIf="topoData.length ===2 
+        && topoData[0].length >0 && topoData[1].length >0; else noDataTpl">
+          <tree-topo #treeTopo class="tree-topo-container" [devices]="topoData[0]" [links]="topoData[1]"
+            (showTopoDetailEmitter)="showTopoDetail($event)" (hiddenTopoDetailEmitter)="hiddenTopoDetail()">
+          </tree-topo>
+        </ng-container>
+      </ng-container>
+    </div>
+  </mat-sidenav-content>
+  <!-- mode over/side -->
+  <mat-sidenav class="detailPannel" #sidenav mode="side" position="end">
+    <topo-detail [device]="previousNode" [loading]="detailLoading$"></topo-detail>
+  </mat-sidenav>
+</mat-sidenav-container>
 <ng-template #noDataTpl>
   <div class="noDataShow">
     暂无Topology数据可供显示
   </div>
 </ng-template>
 <ng-template #loadingTpl>
-  <div appLoading class="topoContainer" [appLoadingSize]=100 [appLoadingWidth]=10></div>
+  <div appLoading class="topo-content" [appLoadingSize]=100 [appLoadingWidth]=10></div>
 </ng-template>

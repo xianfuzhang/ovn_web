@@ -115,7 +115,11 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
         event.stopPropagation();
         const g = select(event.currentTarget);
         this.addNodeSelectionStyle(g);
-        this.showTopoDetailEmitter.emit({ id: d.data.id, name: d.data.name });
+        this.showTopoDetailEmitter.emit({
+          id: d.data.id,
+          name: d.data.name,
+          type: d.data.type
+        });
       })
       .on('mouseenter', (event: MouseEvent, d) => {
         const g = select(event.currentTarget);

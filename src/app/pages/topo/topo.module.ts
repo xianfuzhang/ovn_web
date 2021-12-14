@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TopoComponent } from './topo.component';
 import { CoreModule } from '../../core/core.module';
 import { TreeTopoComponent } from './treeTopo.component';
-
+import { TopoDetailComponent } from './topoDetail.component';
 @NgModule({
   declarations: [
     TopoComponent,
-    TreeTopoComponent
+    TreeTopoComponent,
+    TopoDetailComponent
   ],
   imports: [
     CommonModule,

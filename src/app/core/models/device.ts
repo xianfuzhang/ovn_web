@@ -15,6 +15,12 @@ export interface Device {
   ports: Port[];
 }
 
+export interface TopoDeviceNode {
+  id: string;
+  name: string;
+  type: string;
+}
+
 export interface Link {
   srcDeviceId: string;
   srcDeviceName: string;

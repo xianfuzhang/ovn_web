@@ -1,0 +1,30 @@
+<mat-card class="topo-detail" style="height: 100%;">
+  <mat-card-title>{{device && device.name}}</mat-card-title>
+  <mat-card-content class="topo-detail-pannel">
+    <ng-container *ngIf="!(loading$|async); else loadingTpl">
+      <mat-tab-group animationDuration="0ms" (selectedTabChange)="changeTab($event)">
+        <mat-tab label="端口">
+          <ng-template matTabContent>
+            <ng-container *ngIf="tableModel$ | async as model">
+              <app-data-table [model]="model" [data]="data">
+              </app-data-table>
+            </ng-container>
+          </ng-template>
+        </mat-tab>
+        <ng-container *ngIf="device && device.type === 'router'">
+          <mat-tab label="NAT">
+            <ng-template matTabContent>
+              <ng-container *ngIf="tableModel$ | async as model">
+                <app-data-table [model]="model" [data]="data">
+                </app-data-table>
+              </ng-container>
+            </ng-template>
+          </mat-tab>
+        </ng-container>
+      </mat-tab-group>
+    </ng-container>
+  </mat-card-content>
+</mat-card>
+<ng-template #loadingTpl>
+  <div class="topo-content" appLoading></div>
+</ng-template>

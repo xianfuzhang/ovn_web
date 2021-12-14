@@ -60,7 +60,7 @@ export class DataTableComponent implements OnInit, AfterViewInit, OnChanges, OnD
 
   search: InputModel = {
     type: 'search',
-    placeholder: 'COMPONENT.SEARCH_BAR.PALCEHOLDER'
+    placeholder: '搜索'
   };
   expandedElement = null;
   loading: boolean = true;

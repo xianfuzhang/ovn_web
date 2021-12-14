@@ -18,3 +18,30 @@
   height: 100%;
   display: flex;
 }
+.topo-detail-pannel {
+  height: calc(100% - 95px);
+  background-color: #f5f5f5;
+}
+.topo-detail > mat-card-title{
+  padding-left: 16px;
+  padding-top: 20px;
+  font-size: 16px;
+  height: 95px;
+  margin-bottom: 0;
+}
+mat-card.mat-card.topo-detail > mat-card-content{
+  padding: 16px;
+}
+.topo-detail mat-tab-header{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 54px;
+  padding-left: 9px;
+  user-select: none;
+  box-shadow: none;
+  border-bottom: none;
+}
+.topo-detail .mat-tab-group > .mat-tab-body-wrapper {
+  padding-top: 0;
+}
