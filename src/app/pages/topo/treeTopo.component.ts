@@ -80,7 +80,9 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
 
     const link = svg
       .selectAll(".link")
+      //horizontal
       // .data(nodes.descendants().slice(1))
+      //vertical
       .data(links)
       .join("path")
       .attr("class", "link")
@@ -95,8 +97,7 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       //     + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
       //     + " " + d.parent.y + "," + d.parent.x;
       // });
-
-      //vertical link
+      //vertical
       .attr("d", linkVertical().x(d => d.x).y(d => d.y))
 
     const node = svg
