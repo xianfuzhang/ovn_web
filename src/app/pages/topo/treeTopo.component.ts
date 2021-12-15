@@ -1,6 +1,6 @@
 import { Component, Input, ElementRef, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { tree, hierarchy } from 'd3-hierarchy';
-// import { linkVertical } from 'd3-shape';
+import { linkVertical, linkRadial } from 'd3-shape';
 import { select, selectAll, Selection } from 'd3-selection';
 import { Device, Link } from '../../core/models/device';
 
@@ -24,12 +24,20 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
   @Input('links') links: Link[];
   @Output() showTopoDetailEmitter = new EventEmitter<object>();
   @Output() hiddenTopoDetailEmitter = new EventEmitter<string>();
+  // horizontal
+  // margin = {
+  //   top: 20,
+  //   left: 80,
+  //   bottom: 80,
+  //   right: 150
+  // };
+  // vertical
   margin = {
-    top: 20,
-    left: 80,
-    bottom: 80,
-    right: 150
-  }
+    top: 50,
+    left: 100,
+    bottom: 120,
+    right: 100
+  };
   svgWidth: number;
   svgHeight: number;
   treeRootNode: TreeNode;
@@ -55,9 +63,13 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
 
   initTreeTopo(): void {
     const treeMap = d3Tree
-      .size([this.svgHeight, this.svgWidth]);
-    let nodes = hierarchy(this.treeRootNode, d => d.children);
-    nodes = treeMap(nodes);
+    // horizontal
+      // .size([this.svgHeight, this.svgWidth]);
+      // vertical
+      .size([this.svgWidth, this.svgHeight]);
+    const root = hierarchy(this.treeRootNode, d => d.children);
+    const nodes = treeMap(root);
+    const links = nodes.links();
 
     select('g.tree-container').remove();
     const svg = select('svg#tree-root')
@@ -68,32 +80,44 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
 
     const link = svg
       .selectAll(".link")
-      .data(nodes.descendants().slice(1))
+      // .data(nodes.descendants().slice(1))
+      .data(links)
       .join("path")
       .attr("class", "link")
       .attr("fill", "none")
       .attr("stroke", "#10729b")
       .attr("stroke-opacity", 0.6)
       .attr("stroke-width", 1.5)
-      .attr("d", d => {
-        return "M" + d.y + "," + d.x
-          + "C" + (d.y + d.parent.y) / 2 + "," + d.x
-          + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
-          + " " + d.parent.y + "," + d.parent.x;
-      });
+      //horizontal
+      // .attr("d", d => {
+      //   return "M" + d.y + "," + d.x
+      //     + "C" + (d.y + d.parent.y) / 2 + "," + d.x
+      //     + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
+      //     + " " + d.parent.y + "," + d.parent.x;
+      // });
+
+      //vertical link
+      .attr("d", linkVertical().x(d => d.x).y(d => d.y))
 
     const node = svg
       .selectAll('.node')
-      .data(nodes.descendants())
+      .data(root.descendants())
       .join("g")
       .attr("class", d => "node" + (d.children ? " node-internal"
         : " node-leaf"))
-      .attr("transform", d => "translate(" + d.y + "," +
-        d.x + ")");
+        // vertical
+      .attr("transform", d => "translate(" + d.x + "," +
+        d.y + ")");
+        // horizontal
+      // .attr("transform", d => "translate(" + d.y + "," +
+      //   d.x + ")");
 
     node.append("use")
       .attr("xlink:href", '#switch')
-      .attr('x', -24)
+      //horizontal
+      // .attr('x', -24)
+      //vertical
+      .attr('x', -20)
       .attr('y', -20)
       .attr('fill', d => d.data.type === 'router' ? '#1d4c7a' : '#4081a9');
 
