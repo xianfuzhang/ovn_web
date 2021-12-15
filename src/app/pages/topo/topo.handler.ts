@@ -9,10 +9,12 @@ import { DeviceService } from '../../core/https/device';
 })
 export class TopoHandler implements OnDestroy {
   private _data = new BehaviorSubject<any>([]);
+  private _detailData = new BehaviorSubject<any>([]);
   private _loading = new BehaviorSubject<boolean>(true);
   private _detailLoading = new BehaviorSubject<boolean>(true);
   private _message = new Subject<MessageModel>();
   readonly data$: Observable<any> = this._data.asObservable();
+  readonly detailData$: Observable<any> = this._detailData.asObservable();
   readonly loading$: Observable<boolean> = this._loading.asObservable();
   readonly detailLoading$: Observable<boolean> = this._detailLoading.asObservable();
   readonly message$: Observable<MessageModel> = this._message.asObservable();
@@ -22,6 +24,7 @@ export class TopoHandler implements OnDestroy {
 
   ngOnDestroy(): void {
     this._data.unsubscribe();
+    this._detailData.unsubscribe();
     this._message.unsubscribe();
     this._loading.unsubscribe();
   }
@@ -83,8 +86,7 @@ export class TopoHandler implements OnDestroy {
       .subscribe((res) => {
         this._detailLoading.next(false);
         console.log(res);
-        // this.dataStore.data = this.formatDevicePortModel(res);
-        this._data.next(JSON.parse(JSON.stringify(this.dataStore.data)));
+        this._detailData.next(res);
       });
   }
 }

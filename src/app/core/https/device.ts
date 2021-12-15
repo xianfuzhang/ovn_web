@@ -17,11 +17,11 @@ export class DeviceService {
   }
 
   getDevicePortList(deviceId: string) {
-    return this.http.get(`/ovn/v1/devices${deviceId}/ports`);
+    return this.http.get(`/ovn/v1/devices/${deviceId}/ports`);
   }
 
   getDeviceNatList(deviceId: string) {
-    return this.http.get(`/ovn/v1/devices${deviceId}/nats`);
+    return this.http.get(`/ovn/v1/devices/${deviceId}/nats`);
   }
 
 }

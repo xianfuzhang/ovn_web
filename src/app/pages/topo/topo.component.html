@@ -13,7 +13,7 @@
   </mat-sidenav-content>
   <!-- mode over/side -->
   <mat-sidenav class="detailPannel" #sidenav mode="side" position="end">
-    <topo-detail [device]="previousNode" [loading]="detailLoading$"></topo-detail>
+    <topo-detail [device]="previousNode" [loading]="detailLoading$" [data]="detailData"></topo-detail>
   </mat-sidenav>
 </mat-sidenav-container>
 <ng-template #noDataTpl>

@@ -28,11 +28,11 @@ export class TopoHelper {
           displayName: 'MAC地址'
         },
         {
-          id: 'ipAddress',
+          id: 'ipAddresses',
           displayName: 'IP地址'
         },
         {
-          id: 'network',
+          id: 'networks',
           displayName: '网络'
         }
       ]
@@ -45,23 +45,26 @@ export class TopoHelper {
       columns: [
         {
           id: 'type',
-          displayName: '类型'
+          displayName: '类型',
+          maxWidth: '80px'
         },
         {
-          id: 'logicalIP',
+          id: 'logicalIp',
           displayName: '逻辑IP'
         },
         {
-          id: 'externalIP',
+          id: 'externalIp',
           displayName: '外部IP'
         },
         {
           id: 'logicalPort',
-          displayName: '逻辑端口'
+          displayName: '逻辑端口',
+          maxWidth: '80px'
         },
         {
           id: 'externalMac',
-          displayName: '外部MAC'
+          displayName: '外部MAC',
+          maxWidth: '80px'
         }
       ]
     }

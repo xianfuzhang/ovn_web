@@ -19,6 +19,7 @@ export class TopoComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   detailLoading$: Observable<boolean>;
   data$: Observable<any[]>;
+  detailData: any[] = [];
   previousNode: TopoDeviceNode;
 
   constructor(
@@ -30,6 +31,9 @@ export class TopoComponent implements OnInit, OnDestroy {
     this.loading$ = this.topoHandler.loading$;
     this.detailLoading$ = this.topoHandler.detailLoading$;
     this.data$ = this.topoHandler.data$;
+    this.topoHandler.detailData$.subscribe((data: any[]) => {
+      this.detailData = data;
+    });
     this.messageSubscription = this.topoHandler.message$
       .subscribe((res: MessageModel) => {
         if (res.content) {
