@@ -1,5 +1,5 @@
 import { Component, Input, ElementRef, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
-import { tree, hierarchy } from 'd3-hierarchy';
+import { tree, hierarchy, Node } from 'd3-hierarchy';
 import { linkVertical, linkRadial } from 'd3-shape';
 import { select, selectAll, Selection } from 'd3-selection';
 import { Device, Link } from '../../core/models/device';
@@ -12,6 +12,11 @@ interface TreeNode {
   type: string;
   path?: string;
   children?: TreeNode[]
+}
+
+interface NodeLink {
+  source: Node,
+  target: Node
 }
 
 @Component({
@@ -41,6 +46,7 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
   svgWidth: number;
   svgHeight: number;
   treeRootNode: TreeNode;
+  nodeLinks: NodeLink[] = [];
 
   constructor(private elmRef: ElementRef) { }
 
@@ -48,7 +54,7 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
     this.initSvgArea();
     this.checkDataValid();
     this.buildTreeRootNode();
-    console.log(this.treeRootNode);
+    // console.log(this.treeRootNode);
     this.initTreeTopo();
     this.initNodeEventAction();
   }
@@ -63,13 +69,13 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
 
   initTreeTopo(): void {
     const treeMap = d3Tree
-    // horizontal
+      // horizontal
       // .size([this.svgHeight, this.svgWidth]);
       // vertical
       .size([this.svgWidth, this.svgHeight]);
     const root = hierarchy(this.treeRootNode, d => d.children);
     const nodes = treeMap(root);
-    const links = nodes.links();
+    this.nodeLinks = nodes.links();
 
     select('g.tree-container').remove();
     const svg = select('svg#tree-root')
@@ -83,12 +89,12 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       //horizontal
       // .data(nodes.descendants().slice(1))
       //vertical
-      .data(links)
+      .data(this.nodeLinks)
       .join("path")
       .attr("class", "link")
       .attr("fill", "none")
       .attr("stroke", "#10729b")
-      .attr("stroke-opacity", 0.6)
+      .attr("stroke-opacity", 0.7)
       .attr("stroke-width", 1.5)
       //horizontal
       // .attr("d", d => {
@@ -106,12 +112,12 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       .join("g")
       .attr("class", d => "node" + (d.children ? " node-internal"
         : " node-leaf"))
-        // vertical
+      // vertical
       .attr("transform", d => "translate(" + d.x + "," +
         d.y + ")");
-        // horizontal
-      // .attr("transform", d => "translate(" + d.y + "," +
-      //   d.x + ")");
+    // horizontal
+    // .attr("transform", d => "translate(" + d.y + "," +
+    //   d.x + ")");
 
     node.append("use")
       .attr("xlink:href", '#switch')
@@ -139,35 +145,59 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       .on('click', (event: MouseEvent, d) => {
         event.stopPropagation();
         const g = select(event.currentTarget);
-        this.addNodeSelectionStyle(g);
+        this.addNodeSelectionStyle(g, d);
         this.showTopoDetailEmitter.emit({
           id: d.data.id,
           name: d.data.name,
           type: d.data.type
         });
       })
-      .on('mouseenter', (event: MouseEvent, d) => {
+      .on('mouseenter', (event: MouseEvent, d: Node) => {
         const g = select(event.currentTarget);
-        this.addNodeSelectionStyle(g);
+        this.addNodeSelectionStyle(g, d);
       })
-      .on('mouseleave', (event: MouseEvent, d) => {
+      .on('mouseleave', (event: MouseEvent, d: Node) => {
         const g = select(event.currentTarget);
-        this.removeNodeSelectionStyle(g);
+        this.removeNodeSelectionStyle(g, d);
       });
   }
 
-  addNodeSelectionStyle(selection: Selection): void {
+  addNodeSelectionStyle(selection: Selection, d: Node): void {
     selection.select('use')
       .style('transform', 'scale(1.1)');
     selection.select('text')
       .style('transform', 'scale(1.1)');
+    if (d.data.path && !['join', 'ovn_cluster_router'].includes(d.data.path)) {
+      selectAll('path.link')
+        .filter((link: NodeLink) => {
+          return link.source.data.path === d.data.path
+            || link.target.data.path === d.data.path
+            || (link.source.data.path === 'join'
+              && link.target.data.path === 'ovn_cluster_router');
+        })
+        .attr('stroke', 'red')
+        .attr("stroke-opacity", 1)
+        .attr("stroke-width", 1.8);
+    }
   }
 
-  removeNodeSelectionStyle(selection: Selection): void {
+  removeNodeSelectionStyle(selection: Selection, d: Node): void {
     selection.select('use')
       .style('transform', null);
     selection.select('text')
       .style('transform', null);
+    if (d.data.path && !['join', 'ovn_cluster_router'].includes(d.data.path)) {
+      selectAll('path.link')
+        .filter((link: NodeLink) => {
+          return link.source.data.path === d.data.path
+            || link.target.data.path === d.data.path
+            || (link.source.data.path === 'join'
+              && link.target.data.path === 'ovn_cluster_router');
+        })
+        .attr('stroke', '#10729b')
+        .attr("stroke-opacity", 0.7)
+        .attr("stroke-width", 1.5);
+    }
   }
 
   resize() {
@@ -217,12 +247,14 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       name: 'join',
       id: '',
       type: 'switch',
+      path: 'join',
       children: []
     };
     const ovnClusterRouterNode: TreeNode = {
       name: 'ovn_cluster_router',
       id: '',
       type: 'router',
+      path: 'ovn_cluster_router',
       children: []
     };
     const joinExp = /^join$/i;
