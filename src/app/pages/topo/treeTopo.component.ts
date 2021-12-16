@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, OnDestroy, OnInit, Output, EventEmitter }
 import { tree, hierarchy, Node } from 'd3-hierarchy';
 import { linkVertical, linkRadial } from 'd3-shape';
 import { select, selectAll, Selection } from 'd3-selection';
+import { timeout } from 'd3-timer';
 import { Device, Link } from '../../core/models/device';
 
 const d3Tree = tree();
@@ -93,7 +94,7 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       .join("path")
       .attr("class", "link")
       .attr("fill", "none")
-      .attr("stroke", "#10729b")
+      .attr("stroke", "#003366")
       .attr("stroke-opacity", 0.7)
       .attr("stroke-width", 1.5)
       //horizontal
@@ -145,7 +146,9 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       .on('click', (event: MouseEvent, d) => {
         event.stopPropagation();
         const g = select(event.currentTarget);
-        this.addNodeSelectionStyle(g, d);
+        timeout(() => {
+          this.addNodeSelectionStyle(g, d);
+        }, 300);
         this.showTopoDetailEmitter.emit({
           id: d.data.id,
           name: d.data.name,
@@ -154,11 +157,15 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
       })
       .on('mouseenter', (event: MouseEvent, d: Node) => {
         const g = select(event.currentTarget);
-        this.addNodeSelectionStyle(g, d);
+        timeout(() => {
+          this.addNodeSelectionStyle(g, d);
+        }, 300);
       })
       .on('mouseleave', (event: MouseEvent, d: Node) => {
         const g = select(event.currentTarget);
-        this.removeNodeSelectionStyle(g, d);
+        timeout(() => {
+          this.removeNodeSelectionStyle(g, d);
+        }, 300);
       });
   }
 
@@ -175,9 +182,9 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
             || (link.source.data.path === 'join'
               && link.target.data.path === 'ovn_cluster_router');
         })
-        .attr('stroke', 'red')
-        .attr("stroke-opacity", 1)
-        .attr("stroke-width", 1.8);
+        .attr('stroke', '#993300')
+        .attr("stroke-opacity", 0.8)
+        .attr("stroke-width", 3);
     }
   }
 
@@ -194,7 +201,7 @@ export class TreeTopoComponent implements OnInit, OnDestroy {
             || (link.source.data.path === 'join'
               && link.target.data.path === 'ovn_cluster_router');
         })
-        .attr('stroke', '#10729b')
+        .attr('stroke', '#003366')
         .attr("stroke-opacity", 0.7)
         .attr("stroke-width", 1.5);
     }
