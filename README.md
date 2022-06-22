@@ -1,4 +1,6 @@
 # ovn_web
+## 准备
+npm install
 ## 生产环境
 npm run build
 拷贝public文件到生产环境下，设置nginx静态文件路径指向public即可
